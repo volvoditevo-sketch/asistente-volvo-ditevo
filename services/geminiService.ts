@@ -1,103 +1,142 @@
 // services/geminiService.ts
+import { Sender } from "../types";
 
 type GeminiResponse = {
   text: string;
   sources?: string[];
 };
 
-function normalize(s: string) {
-  return (s || "")
+// --- Datos oficiales (extraídos de la web oficial en snippets) ---
+// Ventas
+const HOURS_SALES: Record<string, string> = {
+  "berlin": "Lunes a Viernes: 09:00–13:30 / 16:00–19:30 · Sábados: 10:00–14:00",
+  "sant just": "Lunes a Viernes: 09:00–13:30 / 16:00–19:30 · Sábados: 10:00–14:00",
+  "sant cugat": "Lunes a Viernes: 09:30–13:30 / 16:00–19:30 · Sábados: 10:00–14:00",
+  "maquinista": "Lunes a Viernes: 09:00–13:30 / 16:00–19:30 · Sábados: 10:00–14:00",
+};
+
+// Taller (si no está claro para un centro, derivamos a WhatsApp Taller)
+const HOURS_TALLER: Record<string, string> = {
+  "sant just": "Lunes a Jueves: 08:00–13:30 / 15:00–19:00 · Viernes: 08:00–13:30 / 15:00–18:00",
+  "sant cugat": "Lunes a Jueves: 08:00–13:30 / 15:00–18:00 · Viernes: 08:00–13:30 / 15:00–18:00",
+  "maquinista": "Lunes a Jueves: 08:00–13:30 / 15:00–18:00 · Viernes: 08:00–13:30 / 15:00–18:00",
+  // berlin: si no tienes el horario confirmado en la web, lo derivamos a WhatsApp Taller
+};
+
+const normalize = (s: string) =>
+  s
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "") // quita acentos
+    .replace(/[\u0300-\u036f]/g, "")
     .trim();
-}
 
-export async function getGeminiResponse(prompt: string): Promise<GeminiResponse> {
-  const p = normalize(prompt);
+const detectCenter = (q: string): "berlin" | "sant just" | "sant cugat" | "maquinista" | null => {
+  const t = normalize(q);
+  if (t.includes("berlin") || t.includes("les corts")) return "berlin";
+  if (t.includes("sant just")) return "sant just";
+  if (t.includes("sant cugat")) return "sant cugat";
+  if (t.includes("maquinista") || t.includes("sant andreu")) return "maquinista";
+  return null;
+};
 
-  // 1) UBICACIONES / HORARIOS
-  if (
-    p.includes("ubicacion") ||
-    p.includes("direccion") ||
-    p.includes("donde estais") ||
-    p.includes("donde estan") ||
-    p.includes("horario") ||
-    p.includes("horarios") ||
-    p.includes("concesionario") ||
-    p.includes("sant cugat") ||
-    p.includes("sant just") ||
-    p.includes("maquinista") ||
-    p.includes("berlin")
-  ) {
+const isAboutWorkshop = (q: string) => {
+  const t = normalize(q);
+  return (
+    t.includes("taller") ||
+    t.includes("revision") ||
+    t.includes("mantenimiento") ||
+    t.includes("cita") ||
+    t.includes("postventa") ||
+    t.includes("recambios")
+  );
+};
+
+const isAboutHours = (q: string) => {
+  const t = normalize(q);
+  return (
+    t.includes("horario") ||
+    t.includes("abre") ||
+    t.includes("cierra") ||
+    t.includes("sabado") ||
+    t.includes("domingo")
+  );
+};
+
+const isAboutCars = (q: string) => {
+  const t = normalize(q);
+  return (
+    t.includes("coche") ||
+    t.includes("coches") ||
+    t.includes("ocasion") ||
+    t.includes("segunda mano") ||
+    t.includes("selekt") ||
+    t.includes("vn") ||
+    t.includes("nuevo") ||
+    t.includes("precio") ||
+    t.includes("stock") ||
+    t.includes("modelo") ||
+    t.includes("xc") ||
+    t.includes("ex")
+  );
+};
+
+export async function getGeminiResponse(userInput: string): Promise<GeminiResponse> {
+  const q = userInput || "";
+  const center = detectCenter(q);
+
+  // 1) Taller: SIEMPRE a WhatsApp Taller (y si preguntan horario, respondemos si está en tabla)
+  if (isAboutWorkshop(q)) {
+    if (isAboutHours(q)) {
+      if (center && HOURS_TALLER[center]) {
+        return {
+          text: `El horario de Taller en ${center === "berlin" ? "Barcelona Berlín" : center === "sant just" ? "Sant Just" : center === "sant cugat" ? "Sant Cugat" : "La Maquinista"} es: ${HOURS_TALLER[center]}. ¿Desea abrir el WhatsApp de Taller ahora?`,
+        };
+      }
+      return {
+        text: "Para Taller, le atendemos directamente por WhatsApp. ¿Desea abrir el WhatsApp de Taller ahora?",
+      };
+    }
+
     return {
-      text:
-        "Tenemos 4 centros en Barcelona:\n\n" +
-        "• **Berlin**\n" +
-        "• **La Maquinista**\n" +
-        "• **Sant Just**\n" +
-        "• **Sant Cugat**\n\n" +
-        "Dime cuál te interesa y te paso **dirección y horarios**.",
+      text: "Para Taller y cita de revisión, le atendemos directamente por WhatsApp. ¿Desea abrir el WhatsApp de Taller ahora?",
     };
   }
 
-  // 2) CITA TALLER
-  if (
-    p.includes("cita taller") ||
-    p.includes("taller") ||
-    p.includes("revision") ||
-    p.includes("mantenimiento") ||
-    p.includes("cita") ||
-    p.includes("itv") ||
-    p.includes("averia")
-  ) {
+  // 2) Preguntas de coches: derivar a WhatsApp Ventas + elegir centro
+  if (isAboutCars(q)) {
+    // Si el usuario ya menciona centro → perfecto
+    if (center) {
+      return {
+        text: `Perfecto. Para información de vehículos (VN u Ocasión), lo más rápido es atenderle por WhatsApp del centro de ${center === "berlin" ? "Barcelona Berlín" : center === "sant just" ? "Sant Just" : center === "sant cugat" ? "Sant Cugat" : "La Maquinista"}. ¿Desea abrir WhatsApp Ventas ahora?`,
+      };
+    }
+
+    // Si no menciona centro → preguntar uno solo
     return {
-      text:
-        "Perfecto. Para pedir **cita de taller**, dime:\n" +
-        "1) ¿En qué centro? (Berlin / Maquinista / Sant Just / Sant Cugat)\n" +
-        "2) ¿Qué necesitas? (revisión, mantenimiento, avería, etc.)\n" +
-        "3) ¿Qué día y franja horaria te va bien?\n\n" +
-        "Con eso te indico el siguiente paso.",
+      text: "Perfecto. ¿Con qué centro desea hablar por WhatsApp: Barcelona Berlín, Sant Just, Sant Cugat o La Maquinista?",
     };
   }
 
-  // 3) EL NUEVO EX30
-  if (p.includes("ex30") || p.includes("nuevo ex30")) {
+  // 3) Horarios de ventas (si no especifica centro, preguntamos centro)
+  if (isAboutHours(q)) {
+    if (!center) {
+      return { text: "¿De qué centro desea el horario: Barcelona Berlín, Sant Just, Sant Cugat o La Maquinista?" };
+    }
+    const h = HOURS_SALES[center];
     return {
-      text:
-        "El **Volvo EX30** es nuestro SUV compacto 100% eléctrico.\n\n" +
-        "Si me dices tu uso (ciudad / viajes), presupuesto aproximado y si tienes punto de carga, te recomiendo la versión ideal.",
+      text: `El horario de Ventas en ${center === "berlin" ? "Barcelona Berlín" : center === "sant just" ? "Sant Just" : center === "sant cugat" ? "Sant Cugat" : "La Maquinista"} es: ${h}.`,
     };
   }
 
-  // 4) OCASIÓN
-  if (
-    p.includes("ocasion") ||
-    p.includes("segunda mano") ||
-    p.includes("seminuevo") ||
-    p.includes("km0") ||
-    p.includes("km 0") ||
-    p.includes("usado")
-  ) {
+  // 4) Ubicaciones
+  if (normalize(q).includes("ubicacion") || normalize(q).includes("direccion") || normalize(q).includes("donde") || normalize(q).includes("centro")) {
     return {
-      text:
-        "Sí, tenemos **vehículos de ocasión**.\n\n" +
-        "Para ayudarte rápido, dime:\n" +
-        "• Modelo que te interesa (XC40, XC60, EX30, etc.)\n" +
-        "• Presupuesto máximo\n" +
-        "• Gasolina / diésel / híbrido / eléctrico\n\n" +
-        "Y te digo opciones y el siguiente paso.",
+      text: "Tenemos centros en Barcelona Berlín (Les Corts), Sant Just, Sant Cugat y La Maquinista. ¿Qué centro le interesa?",
     };
   }
 
-  // 5) RESPUESTA GENERAL (cuando no encaja en nada)
+  // 5) Fallback (no inventa)
   return {
-    text:
-      "Entendido. Puedo ayudarte con:\n" +
-      "• Ubicaciones y horarios\n" +
-      "• Cita de taller\n" +
-      "• Información del Volvo EX30\n" +
-      "• Vehículos de ocasión\n\n" +
-      "¿Qué necesitas exactamente?",
+    text: "Para atenderle correctamente, ¿su consulta es de Ventas (VN/Ocasión) o de Taller?",
   };
 }
