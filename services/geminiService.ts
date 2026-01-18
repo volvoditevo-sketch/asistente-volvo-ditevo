@@ -134,7 +134,7 @@ export async function getGeminiResponse(userInput: string): Promise<GeminiRespon
       text: "Tenemos centros en Barcelona Berlín (Les Corts), Sant Just, Sant Cugat y La Maquinista. ¿Qué centro le interesa?",
     };
   }
-
+test
   // 5) Fallback (no inventa)
   return {
     text: "Para atenderle correctamente, ¿su consulta es de Ventas (VN/Ocasión) o de Taller?",
