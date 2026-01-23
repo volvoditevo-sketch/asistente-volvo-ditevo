@@ -14,7 +14,7 @@ const QUICK_ACTIONS: QuickAction[] = [
 const SALES_LOCATIONS = [
   { name: 'Berlín', url: 'https://wa.me/34669656109' },
   { name: 'Sant Cugat', url: 'https://wa.me/34697437918' },
-  { name: 'Sant Just', url: 'https://wa.me/34697900457' },
+  { name: 'Sant Just', url: 'https://wa.me/34602252208' },
   { name: 'La Maquinista', url: 'https://wa.me/34602259430' },
 ];
 const LOCATIONS = [
