@@ -17,7 +17,28 @@ const SALES_LOCATIONS = [
   { name: 'Sant Just', url: 'https://wa.me/34697900457' },
   { name: 'La Maquinista', url: 'https://wa.me/34602259430' },
 ];
-
+const LOCATIONS = [
+  {
+    name: 'Berlín',
+    note: 'Concesionario Oficial Volvo',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Volvo%20Ditevo%20Barcelona%20Berl%C3%ADn',
+  },
+  {
+    name: 'Sant Cugat',
+    note: 'Concesionario Oficial Volvo',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Volvo%20Ditevo%20Sant%20Cugat',
+  },
+  {
+    name: 'Sant Just',
+    note: 'Concesionario Oficial Volvo',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Volvo%20Ditevo%20Sant%20Just',
+  },
+  {
+    name: 'La Maquinista',
+    note: 'Concesionario Oficial Volvo',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Volvo%20Ditevo%20La%20Maquinista',
+  },
+];
 const App: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
