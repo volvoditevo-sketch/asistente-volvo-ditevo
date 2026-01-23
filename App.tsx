@@ -207,51 +207,48 @@ const App: React.FC = () => {
             </div>
             
 {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
-<section className="mb-16 border-t border-gray-100 pt-12">
+<section className="mb-20 border-t border-gray-100 pt-12">
   <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block text-center">
     Ubicaciones
   </span>
 
-  <div className="flex flex-col gap-2 mb-10 text-center">
-    <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight m-0">
+  <div className="text-center mb-10">
+    <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight">
       Concesionarios Oficiales Volvo
     </h3>
-    <p className="text-gray-500 text-sm font-light leading-relaxed m-0">
+    <p className="text-gray-500 text-sm font-light mt-2">
       Abre Google Maps para ver la ruta y llegar fácilmente a la sede que prefieras.
     </p>
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
     {LOCATIONS.map((loc) => (
       <a
         key={loc.name}
         href={loc.mapsUrl}
         target="_blank"
         rel="noreferrer"
-        aria-label={`Abrir ${loc.name} en Google Maps`}
         className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col"
       >
-        {/* Header */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
-            <span className="text-lg">📍</span>
+          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057]">
+            📍
           </div>
 
-          <div className="min-w-0">
-            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
+          <div>
+            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
               {loc.name}
             </div>
-            <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
+            <div className="text-[11px] text-gray-400 font-semibold">
               {loc.note}
             </div>
           </div>
         </div>
 
-        {/* CTA */}
         <div className="mt-6">
-          <span className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-            Abrir Maps <span aria-hidden="true">→</span>
-          </span>
+          <div className="w-full text-center px-4 py-3 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
+            Abrir Maps →
+          </div>
 
           <div className="mt-4 pt-4 border-t border-gray-100 text-center text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
             Cómo llegar
@@ -260,7 +257,24 @@ const App: React.FC = () => {
       </a>
     ))}
   </div>
+
+  {/* Trust Badges */}
+  <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+    {[
+      "Concesionario oficial Volvo",
+      "Catálogo siempre actualizado",
+      "Atención personalizada",
+    ].map((text) => (
+      <div
+        key={text}
+        className="bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm text-[11px] font-bold uppercase tracking-wider text-gray-600"
+      >
+        {text}
+      </div>
+    ))}
+  </div>
 </section>
+
 
             {/* Trust Badges */}
 <div className="flex flex-wrap justify-center gap-4 md:gap-8">
@@ -427,48 +441,33 @@ const App: React.FC = () => {
           )}
         </section>
 
-        {/* INPUT FIJO */}
+                {/* INPUT FIJO */}
         {chatVisible && (
           <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-[#f4f7f9] via-[#f4f7f9] to-transparent pt-12 pb-10 px-6 z-40 animate-fade-in">
             <div className="max-w-4xl mx-auto">
-              <div className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide no-scrollbar mb-2">
-                {QUICK_ACTIONS.map((action, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSendMessage(action.prompt)}
-                    disabled={isLoading}
-                    className="whitespace-nowrap bg-white/90 backdrop-blur-md border border-gray-200 hover:border-[#003057] hover:text-[#003057] transition-all px-6 py-3 rounded-full text-[11px] font-bold shadow-sm uppercase tracking-wider"
-                  >
-                    {action.label}
-                  </button>
-                ))}
-              </div>
-
-              <form 
-                onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}
-                className="relative flex items-center shadow-2xl rounded-[1.75rem] overflow-hidden border border-gray-100 bg-white p-1.5 transition-all focus-within:border-blue-200"
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleSendMessage();
+                }}
+                className="relative flex items-center shadow-2xl rounded-[1.75rem] overflow-hidden border border-gray-100 bg-white p-1.5"
               >
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Escribe tu consulta sobre stock, servicios o talleres..."
-                  className="w-full py-5 pl-8 pr-20 outline-none text-gray-800 text-base font-light placeholder-gray-300 rounded-3xl"
+                  placeholder="Escribe tu consulta…"
+                  className="w-full py-5 pl-8 pr-20 outline-none text-gray-800"
                   disabled={isLoading}
                 />
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className={`absolute right-3 p-4 rounded-2xl transition-all ${input.trim() && !isLoading ? 'bg-[#003057] text-white shadow-xl scale-100 active:scale-95' : 'bg-gray-50 text-gray-200 scale-95'}`}
+                  className="absolute right-3 p-4 rounded-2xl bg-[#003057] text-white"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                  </svg>
+                  ➤
                 </button>
               </form>
-              <div className="flex justify-center items-center mt-5 opacity-40">
-                  <span className="text-[9px] uppercase font-bold tracking-[0.6em] text-gray-500">Volvo Ditevo Barcelona Official Assistant</span>
-              </div>
             </div>
           </div>
         )}
@@ -478,7 +477,10 @@ const App: React.FC = () => {
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
     </div>
   );
