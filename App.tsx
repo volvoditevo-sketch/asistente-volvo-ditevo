@@ -399,8 +399,13 @@ const App: React.FC = () => {
   </p>
 
   <a
-    href="mailto:flotas.volvo.barcelona@ditevo.com"
-    className="inline-block mt-6 px-6 py-3 rounded-full bg-[#003057] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#00203d] transition-colors"
+    <a
+  href="mailto:flotas.volvo.barcelona@ditevo.com"
+  className="mt-6 px-6 py-3 rounded-full bg-[#003057] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#00203d] transition-colors
+             inline-flex justify-center
+             w-full sm:w-auto mx-auto"
+>
+
   >
     📧 flotas.volvo.barcelona@ditevo.com
   </a>
