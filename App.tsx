@@ -17,6 +17,11 @@ const SALES_LOCATIONS = [
   { name: 'Sant Just', url: 'https://wa.me/34602252208' },
   { name: 'La Maquinista', url: 'https://wa.me/34602259430' },
 ];
+const BUSINESS_LOCATIONS = [
+  { name: 'Empresas · Berlín', url: 'https://wa.me/34669656109' },
+  { name: 'Empresas · Sant Just', url: 'https://wa.me/34618324163' },
+];
+
 const LOCATIONS = [
   {
     name: 'Berlín',
@@ -221,6 +226,19 @@ const App: React.FC = () => {
         </div>
       )}
     </div>
+{showSalesSelector && (
+  <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto animate-fade-in">
+    {BUSINESS_LOCATIONS.map((loc) => (
+      <button
+        key={loc.name}
+        onClick={() => window.open(loc.url, '_blank')}
+        className="bg-blue-50 text-[#003057] py-3 px-4 rounded-xl text-[11px] font-bold uppercase tracking-widest border border-blue-100 hover:bg-blue-100 transition-colors"
+      >
+        {loc.name}
+      </button>
+    ))}
+  </div>
+)}
 
     {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
     <section className="mb-12 border-t border-gray-100 pt-10">
