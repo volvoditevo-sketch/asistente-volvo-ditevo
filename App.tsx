@@ -205,6 +205,7 @@ const App: React.FC = () => {
                 </div>
               )}
             </div>
+            
 {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
 <section className="mb-12 border-t border-gray-100 pt-10">
   <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">
@@ -220,60 +221,38 @@ const App: React.FC = () => {
     </p>
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {LOCATIONS.map((loc) => (
       <a
-        <div className="flex items-center justify-between gap-4">
-  <div className="flex items-center gap-3 min-w-0">
-    <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
-      <span className="text-lg">📍</span>
-    </div>
-
-    <div className="min-w-0">
-      <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
-        {loc.name}
-      </div>
-      <div className="text-[11px] text-gray-400 font-semibold tracking-wide">
-        {loc.note}
-      </div>
-    </div>
-  </div>
-
-  <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-    Abrir Maps <span aria-hidden="true">→</span>
-  </span>
-</div>
-
-<div className="mt-4 pt-4 border-t border-gray-100 text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
-  CÓMO LLEGAR
-</div>
-
+        key={loc.name}
+        href={loc.mapsUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col justify-between"
+        aria-label={`Abrir ${loc.name} en Google Maps`}
       >
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-9 h-9 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057]">
-                <span className="text-base">📍</span>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
+              <span className="text-lg">📍</span>
+            </div>
+
+            <div className="min-w-0">
+              <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
+                {loc.name}
               </div>
-              <div className="min-w-0">
-                <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
-                  {loc.name}
-                </div>
-                <div className="text-[11px] text-gray-400 font-semibold tracking-wide">
-                  {loc.note}
-                </div>
+              <div className="text-[11px] text-gray-400 font-semibold tracking-wide">
+                {loc.note}
               </div>
             </div>
           </div>
 
-          <div className="shrink-0">
-            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-              Abrir Maps <span aria-hidden="true">→</span>
-            </span>
-          </div>
+          <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
+            Abrir Maps <span aria-hidden="true">→</span>
+          </span>
         </div>
 
-        <div className="mt-4 text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
+        <div className="mt-4 pt-4 border-t border-gray-100 text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
           Cómo llegar
         </div>
       </a>
