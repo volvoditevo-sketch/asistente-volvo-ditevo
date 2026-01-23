@@ -207,70 +207,57 @@ const App: React.FC = () => {
             </div>
             
 {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
-<section className="mb-20 border-t border-gray-100 pt-12">
-  <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block text-center">
+<section className="mb-12 border-t border-gray-100 pt-10">
+  <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">
     Ubicaciones
   </span>
 
-  <div className="text-center mb-10">
-    <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight">
+  <div className="flex flex-col gap-2 mb-6">
+    <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight m-0">
       Concesionarios Oficiales Volvo
     </h3>
-    <p className="text-gray-500 text-sm font-light mt-2">
+    <p className="text-gray-500 text-sm font-light leading-relaxed m-0">
       Abre Google Maps para ver la ruta y llegar fácilmente a la sede que prefieras.
     </p>
   </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
     {LOCATIONS.map((loc) => (
       <a
         key={loc.name}
         href={loc.mapsUrl}
         target="_blank"
         rel="noreferrer"
-        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col"
+        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col"
+        aria-label={`Abrir ${loc.name} en Google Maps`}
       >
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057]">
-            📍
+        {/* Cabecera tarjeta */}
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
+            <span className="text-lg">📍</span>
           </div>
 
-          <div>
-            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
+          <div className="min-w-0">
+            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
               {loc.name}
             </div>
-            <div className="text-[11px] text-gray-400 font-semibold">
+            <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
               {loc.note}
             </div>
           </div>
         </div>
 
-        <div className="mt-6">
-          <div className="w-full text-center px-4 py-3 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-            Abrir Maps →
-          </div>
-
-          <div className="mt-4 pt-4 border-t border-gray-100 text-center text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
+        {/* Footer tarjeta (aquí va el botón, ya NO pisa el nombre) */}
+        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+          <div className="text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
             Cómo llegar
           </div>
+
+          <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
+            Abrir Maps <span aria-hidden="true">→</span>
+          </span>
         </div>
       </a>
-    ))}
-  </div>
-
-  {/* Trust Badges */}
-  <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-    {[
-      "Concesionario oficial Volvo",
-      "Catálogo siempre actualizado",
-      "Atención personalizada",
-    ].map((text) => (
-      <div
-        key={text}
-        className="bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm text-[11px] font-bold uppercase tracking-wider text-gray-600"
-      >
-        {text}
-      </div>
     ))}
   </div>
 </section>
@@ -471,20 +458,18 @@ const App: React.FC = () => {
             </div>
           </div>
         )}
-            </main>
+                  </main>
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
     </div>
   );
 };
 
 export default App;
+
 
