@@ -350,6 +350,47 @@ const App: React.FC = () => {
               </button>
             </div>
           </div>
+{/* SECCIÓN EMPRESAS */}
+<div className="mb-20 bg-white rounded-[2rem] border border-gray-100 shadow-sm p-8 md:p-12">
+  <h2 className="text-3xl md:text-4xl font-light text-[#003057] tracking-tight">
+    La excelencia Volvo <span className="font-bold">al servicio de su empresa</span>
+  </h2>
+
+  <p className="text-gray-500 mt-4 font-light leading-relaxed max-w-3xl">
+    En Volvo Ditevo Barcelona sabemos que el tiempo y la movilidad son factores clave para el éxito de tu negocio.
+    Por eso, ponemos a disposición de las empresas un servicio exclusivo diseñado para simplificar la gestión de flotas y cuidar de sus empleados.
+  </p>
+
+  <ul className="grid md:grid-cols-2 gap-4 mt-8">
+    <li className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-600">
+      <strong className="block text-[#003057] mb-1">Entrega y recogida gratuita</strong>
+      Nos adaptamos a su agenda para optimizar su tiempo.
+    </li>
+    <li className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-600">
+      <strong className="block text-[#003057] mb-1">Prioridad en taller</strong>
+      Porque la actividad de su empresa no puede detenerse.
+    </li>
+    <li className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-600">
+      <strong className="block text-[#003057] mb-1">Vehículo de sustitución</strong>
+      Garantizamos su movilidad mientras el vehículo está en el taller.
+    </li>
+    <li className="bg-gray-50 rounded-2xl p-5 text-sm text-gray-600">
+      <strong className="block text-[#003057] mb-1">Descuentos para empleados</strong>
+      Ventajas exclusivas en vehículos nuevos y usados.
+    </li>
+  </ul>
+
+  <p className="text-gray-500 mt-8 font-light leading-relaxed">
+    Una solución integral que combina servicio premium, eficiencia operativa y ventajas exclusivas con la calidad Volvo.
+  </p>
+
+  <a
+    href="mailto:flotas.volvo.barcelona@ditevo.com"
+    className="inline-block mt-6 px-6 py-3 rounded-full bg-[#003057] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#00203d] transition-colors"
+  >
+    📧 flotas.volvo.barcelona@ditevo.com
+  </a>
+</div>
 
           {/* PANEL INFORMATIVO */}
           {activeTab && (
