@@ -231,30 +231,28 @@ const App: React.FC = () => {
         className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col justify-between"
         aria-label={`Abrir ${loc.name} en Google Maps`}
       >
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
-              <span className="text-lg">📍</span>
-            </div>
+  <div className="flex items-center gap-3 min-w-0">
+  <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
+    <span className="text-lg">📍</span>
+  </div>
 
-            <div className="min-w-0">
-              <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs">
-                {loc.name}
-              </div>
-              <div className="text-[11px] text-gray-400 font-semibold tracking-wide">
-                {loc.note}
-              </div>
-            </div>
-          </div>
+  <div className="min-w-0">
+    <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
+      {loc.name}
+    </div>
+    <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
+      {loc.note}
+    </div>
+  </div>
+</div>
 
-          <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-            Abrir Maps <span aria-hidden="true">→</span>
-          </span>
-        </div>
+<div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+  <div className="text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
+    Cómo llegar
+  </div>
 
-        <div className="mt-4 pt-4 border-t border-gray-100 text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
-          Cómo llegar
-        </div>
+  <span className="shrink-0 inline-flex items-center gap-2 px-3 p
+
       </a>
     ))}
   </div>
