@@ -117,180 +117,194 @@ const App: React.FC = () => {
       <main className="flex-1 flex flex-col w-full mx-auto overflow-hidden">
         
         {/* HERO SECTION */}
-        <section className="bg-white border-b border-gray-100 pt-16 pb-12 px-6 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#003057" strokeWidth="1"/>
-                </pattern>
-              </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-          </div>
+<section className="bg-white border-b border-gray-100 pt-16 pb-12 px-6 relative overflow-hidden">
+  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#003057" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+  </div>
 
-          <div className="max-w-4xl mx-auto text-center animate-fade-in relative z-10">
-            <span className="text-[#003057] text-xs font-bold uppercase tracking-[0.4em] mb-6 block opacity-80">Excelencia Sueca en Barcelona</span>
-            <h2 className="text-4xl md:text-6xl font-light text-[#003057] mb-6 tracking-tight">
-              Encuentra tu Volvo <span className="font-bold">ideal</span>
-            </h2>
-            <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-              Descubre la gama de vehículos nuevos y unidades certificadas Volvo Selekt en nuestro centro oficial Ditevo.
-            </p>
-            
-            <div className="flex flex-col md:flex-row justify-center gap-6 mb-12">
-              <button 
-                onClick={() => handleTabChange('VN')}
-                className="group relative bg-[#003057] text-white px-10 py-5 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 overflow-hidden"
-              >
-                <div className="flex items-center justify-center gap-3 mb-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-blue-300 group-hover:animate-pulse">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                  </svg>
-                  <span className="text-base font-bold uppercase tracking-widest">Vehículo Nuevo (VN)</span>
-                </div>
-                <p className="text-[10px] text-blue-200 uppercase tracking-widest opacity-80">Eléctrico e híbrido · Modelos actuales</p>
-              </button>
+  <div className="max-w-4xl mx-auto text-center animate-fade-in relative z-10">
+    <span className="text-[#003057] text-xs font-bold uppercase tracking-[0.4em] mb-6 block opacity-80">
+      Excelencia Sueca en Barcelona
+    </span>
 
-              <button 
-                onClick={() => handleTabChange('OCASION')}
-                className="group relative bg-white border border-gray-200 text-[#003057] px-10 py-5 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-              >
-                <div className="flex items-center justify-center gap-3 mb-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-blue-500">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-                  <span className="text-base font-bold uppercase tracking-widest">Volvo Selekt</span>
-                </div>
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest opacity-80 font-semibold">Certificados y garantizados</p>
-              </button>
-            </div>
+    <h2 className="text-4xl md:text-6xl font-light text-[#003057] mb-6 tracking-tight">
+      Encuentra tu Volvo <span className="font-bold">ideal</span>
+    </h2>
 
-            {/* SECCIÓN DE CONTACTO RÁPIDO */}
-            <div className="mb-12 border-t border-gray-100 pt-10">
-              <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-6 block">Contacto Rápido</span>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
-                <button 
-                  onClick={() => setShowSalesSelector(!showSalesSelector)}
-                  className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl border transition-all ${showSalesSelector ? 'bg-blue-50 border-[#003057] text-[#003057]' : 'bg-white border-gray-100 text-gray-700 hover:border-gray-300'}`}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-500">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                  <span className="text-sm font-bold uppercase tracking-widest">WhatsApp Ventas</span>
-                </button>
-                <button 
-                  onClick={openWhatsAppTaller}
-                  className="flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-white border border-gray-100 text-gray-700 hover:border-gray-300 transition-all"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                  </svg>
-                  <span className="text-sm font-bold uppercase tracking-widest">WhatsApp Taller</span>
-                </button>
+    <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+      Descubre la gama de vehículos nuevos y unidades certificadas Volvo Selekt en nuestro centro oficial Ditevo.
+    </p>
+
+    <div className="flex flex-col md:flex-row justify-center gap-6 mb-12">
+      <button
+        onClick={() => handleTabChange('VN')}
+        className="group relative bg-[#003057] text-white px-10 py-5 rounded-2xl transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 overflow-hidden"
+      >
+        <div className="flex items-center justify-center gap-3 mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-blue-300 group-hover:animate-pulse">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+          </svg>
+          <span className="text-base font-bold uppercase tracking-widest">Vehículo Nuevo (VN)</span>
+        </div>
+        <p className="text-[10px] text-blue-200 uppercase tracking-widest opacity-80">
+          Eléctrico e híbrido · Modelos actuales
+        </p>
+      </button>
+
+      <button
+        onClick={() => handleTabChange('OCASION')}
+        className="group relative bg-white border border-gray-200 text-[#003057] px-10 py-5 rounded-2xl transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+      >
+        <div className="flex items-center justify-center gap-3 mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-blue-500">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+          </svg>
+          <span className="text-base font-bold uppercase tracking-widest">Volvo Selekt</span>
+        </div>
+        <p className="text-[10px] text-gray-400 uppercase tracking-widest opacity-80 font-semibold">
+          Certificados y garantizados
+        </p>
+      </button>
+    </div>
+
+    {/* SECCIÓN DE CONTACTO RÁPIDO */}
+    <div className="mb-12 border-t border-gray-100 pt-10">
+      <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-6 block">
+        Contacto Rápido
+      </span>
+
+      <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-2xl mx-auto">
+        <button
+          onClick={() => setShowSalesSelector(!showSalesSelector)}
+          className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl border transition-all ${
+            showSalesSelector
+              ? 'bg-blue-50 border-[#003057] text-[#003057]'
+              : 'bg-white border-gray-100 text-gray-700 hover:border-gray-300'
+          }`}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-green-500">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l2.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span className="text-sm font-bold uppercase tracking-widest">WhatsApp Ventas</span>
+        </button>
+
+        <button
+          onClick={openWhatsAppTaller}
+          className="flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl bg-white border border-gray-100 text-gray-700 hover:border-gray-300 transition-all"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+          </svg>
+          <span className="text-sm font-bold uppercase tracking-widest">WhatsApp Taller</span>
+        </button>
+      </div>
+
+      {/* Selector de sedes Ventas */}
+      {showSalesSelector && (
+        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto animate-fade-in">
+          {SALES_LOCATIONS.map((loc) => (
+            <button
+              key={loc.name}
+              onClick={() => window.open(loc.url, '_blank')}
+              className="bg-[#003057] text-white py-3 px-2 rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-[#00203d] transition-colors shadow-md"
+            >
+              {loc.name}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+
+    {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
+    <section className="mb-12 border-t border-gray-100 pt-10">
+      <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">
+        Ubicaciones
+      </span>
+
+      <div className="flex flex-col gap-2 mb-6">
+        <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight m-0">
+          Concesionarios Oficiales Volvo
+        </h3>
+        <p className="text-gray-500 text-sm font-light leading-relaxed m-0">
+          Abre Google Maps para ver la ruta y llegar fácilmente a la sede que prefieras.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {LOCATIONS.map((loc) => (
+          <a
+            key={loc.name}
+            href={loc.mapsUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col"
+            aria-label={`Abrir ${loc.name} en Google Maps`}
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
+                <span className="text-lg">📍</span>
               </div>
 
-              {/* Selector de sedes Ventas */}
-              {showSalesSelector && (
-                <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto animate-fade-in">
-                  {SALES_LOCATIONS.map((loc) => (
-                    <button
-                      key={loc.name}
-                      onClick={() => window.open(loc.url, '_blank')}
-                      className="bg-[#003057] text-white py-3 px-2 rounded-xl text-[11px] font-bold uppercase tracking-widest hover:bg-[#00203d] transition-colors shadow-md"
-                    >
-                      {loc.name}
-                    </button>
-                  ))}
+              <div className="min-w-0">
+                <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
+                  {loc.name}
                 </div>
-              )}
+                <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
+                  {loc.note}
+                </div>
+              </div>
             </div>
-            
-{/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
-<section className="mb-12 border-t border-gray-100 pt-10">
-  <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">
-    Ubicaciones
-  </span>
 
-  <div className="flex flex-col gap-2 mb-6">
-    <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight m-0">
-      Concesionarios Oficiales Volvo
-    </h3>
-    <p className="text-gray-500 text-sm font-light leading-relaxed m-0">
-      Abre Google Maps para ver la ruta y llegar fácilmente a la sede que prefieras.
-    </p>
-  </div>
+            <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
+              <div className="text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
+                Cómo llegar
+              </div>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {LOCATIONS.map((loc) => (
-      <a
-        key={loc.name}
-        href={loc.mapsUrl}
-        target="_blank"
-        rel="noreferrer"
-        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col"
-        aria-label={`Abrir ${loc.name} en Google Maps`}
-      >
-        {/* Cabecera tarjeta */}
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
-            <span className="text-lg">📍</span>
-          </div>
-
-          <div className="min-w-0">
-            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
-              {loc.name}
+              <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
+                Abrir Maps <span aria-hidden="true">→</span>
+              </span>
             </div>
-            <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
-              {loc.note}
-            </div>
-          </div>
-        </div>
+          </a>
+        ))}
+      </div>
+    </section>
 
-        {/* Footer tarjeta (aquí va el botón, ya NO pisa el nombre) */}
-        <div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
-          <div className="text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
-            Cómo llegar
-          </div>
-
-          <span className="shrink-0 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
-            Abrir Maps <span aria-hidden="true">→</span>
+    {/* Trust Badges */}
+    <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+      {[
+        { text: "Concesionario oficial Volvo", icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+        { text: "Catálogo siempre actualizado", icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" },
+        { text: "Atención personalizada", icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" }
+      ].map((badge, i) => (
+        <div
+          key={i}
+          className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm transition-all hover:border-blue-100"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-4 h-4 text-[#003057]"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d={badge.icon} />
+          </svg>
+          <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+            {badge.text}
           </span>
         </div>
-      </a>
-    ))}
+      ))}
+    </div>
   </div>
 </section>
-
-
-            {/* Trust Badges */}
-<div className="flex flex-wrap justify-center gap-4 md:gap-8">
-  {[
-    { text: "Concesionario oficial Volvo", icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-    { text: "Catálogo siempre actualizado", icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" },
-    { text: "Atención personalizada", icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" }
-  ].map((badge, i) => (
-    <div
-      key={i}
-      className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm transition-all hover:border-blue-100"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="w-4 h-4 text-[#003057]"
-      >
-        <path strokeLinecap="round" strokeLinejoin="round" d={badge.icon} />
-      </svg>
-      <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wider">
-        {badge.text}
-      </span>
-    </div>
-  ))}
-</div>
-
 
         {/* SECCIÓN DE SELECCIÓN PREMIUM */}
         <section className="max-w-6xl mx-auto w-full px-6 py-12">
