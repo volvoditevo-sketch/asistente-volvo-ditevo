@@ -471,7 +471,7 @@ const App: React.FC = () => {
             </div>
           </div>
         )}
-      </main>
+            </main>
 
       <style>{`
         .scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -487,3 +487,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
