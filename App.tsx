@@ -207,12 +207,12 @@ const App: React.FC = () => {
             </div>
             
 {/* SECCIÓN UBICACIONES · CONCESIONARIOS OFICIALES VOLVO */}
-<section className="mb-12 border-t border-gray-100 pt-10">
-  <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">
+<section className="mb-16 border-t border-gray-100 pt-12">
+  <span className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block text-center">
     Ubicaciones
   </span>
 
-  <div className="flex flex-col gap-2 mb-6">
+  <div className="flex flex-col gap-2 mb-10 text-center">
     <h3 className="text-[#003057] text-xl md:text-2xl font-bold tracking-tight m-0">
       Concesionarios Oficiales Volvo
     </h3>
@@ -228,53 +228,68 @@ const App: React.FC = () => {
         href={loc.mapsUrl}
         target="_blank"
         rel="noreferrer"
-        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 p-6 flex flex-col justify-between"
         aria-label={`Abrir ${loc.name} en Google Maps`}
+        className="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 p-6 flex flex-col"
       >
-  <div className="flex items-center gap-3 min-w-0">
-  <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
-    <span className="text-lg">📍</span>
-  </div>
+        {/* Header */}
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-2xl bg-blue-50 flex items-center justify-center text-[#003057] shrink-0">
+            <span className="text-lg">📍</span>
+          </div>
 
-  <div className="min-w-0">
-    <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
-      {loc.name}
-    </div>
-    <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
-      {loc.note}
-    </div>
-  </div>
-</div>
+          <div className="min-w-0">
+            <div className="text-[#003057] font-extrabold uppercase tracking-widest text-xs truncate">
+              {loc.name}
+            </div>
+            <div className="text-[11px] text-gray-400 font-semibold tracking-wide truncate">
+              {loc.note}
+            </div>
+          </div>
+        </div>
 
-<div className="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3">
-  <div className="text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
-    Cómo llegar
-  </div>
+        {/* CTA */}
+        <div className="mt-6">
+          <span className="inline-flex items-center justify-center w-full gap-2 px-4 py-3 rounded-full bg-[#003057] text-white text-[10px] font-bold uppercase tracking-widest shadow-md group-hover:shadow-lg transition-all">
+            Abrir Maps <span aria-hidden="true">→</span>
+          </span>
 
-  <span className="shrink-0 inline-flex items-center gap-2 px-3 p
-
+          <div className="mt-4 pt-4 border-t border-gray-100 text-center text-[10px] uppercase font-bold tracking-[0.35em] text-gray-300">
+            Cómo llegar
+          </div>
+        </div>
       </a>
     ))}
   </div>
 </section>
 
             {/* Trust Badges */}
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-              {[
-                { text: "Concesionario oficial Volvo", icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-                { text: "Catálogo siempre actualizado", icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" },
-                { text: "Atención personalizada", icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" }
-              ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm transition-all hover:border-blue-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-[#003057]">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={badge.icon} />
-                  </svg>
-                  <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wider">{badge.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+<div className="flex flex-wrap justify-center gap-4 md:gap-8">
+  {[
+    { text: "Concesionario oficial Volvo", icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+    { text: "Catálogo siempre actualizado", icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" },
+    { text: "Atención personalizada", icon: "M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" }
+  ].map((badge, i) => (
+    <div
+      key={i}
+      className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-100 shadow-sm transition-all hover:border-blue-100"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-4 h-4 text-[#003057]"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d={badge.icon} />
+      </svg>
+      <span className="text-[11px] font-bold text-gray-600 uppercase tracking-wider">
+        {badge.text}
+      </span>
+    </div>
+  ))}
+</div>
+
 
         {/* SECCIÓN DE SELECCIÓN PREMIUM */}
         <section className="max-w-6xl mx-auto w-full px-6 py-12">
